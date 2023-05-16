@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-import youtube_dl
+import yt_dlp as youtube_dl
 
 
 class Music(commands.Cog):
@@ -10,12 +10,12 @@ class Music(commands.Cog):
             -reconnect_delay_max 5',
         'options': '-vn'}
 
-    YDL_OPTIONS = {'format': 'bestaudio'}
+    YDL_OPTIONS = {'format': 'bestaudio/best'}
 
     def __init__(self, client):
         self.client = client
 
-    @commands.command(name="join", help="Chama o bot para o sala")
+    @commands.command(name="join", help="Chama o bot para a sala")
     async def join(self, ctx):
         if ctx.author.voice is None:
             await ctx.send("Você não está em um canal de voz!")
@@ -33,15 +33,20 @@ class Music(commands.Cog):
 
     @commands.command(name="play", help="Inicia música no bot. Argumentos: URL da música")
     async def play(self, ctx, url):
+        await self.join(ctx)
+
         ctx.voice_client.stop()
 
         vc = ctx.voice_client
 
-        with youtube_dl.YoutubeDL(self.YDL_OPTIONS) as ydl:
-            info = ydl.extract_info(url, download=False)
-            url2 = info['formats'][0]['url']
-            source = await discord.FFmpegOpusAudio.from_probe(url2, **self.FFMPEG_OPTIONS)
-            vc.play(source)
+        try:
+            with youtube_dl.YoutubeDL(self.YDL_OPTIONS) as ydl:
+                info = ydl.extract_info(url, download=False)
+                url2 = info['url']
+                source = await discord.FFmpegOpusAudio.from_probe(url2, **self.FFMPEG_OPTIONS)
+                vc.play(source)
+        except Exception as error:
+            print(error)
 
     @commands.command(name="pause", help="Pausa a música atual")
     async def pause(self, ctx):

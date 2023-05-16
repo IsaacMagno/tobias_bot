@@ -2,4 +2,4 @@ discord.py
 requests
 python-decouple
 beautifulsoup4
-youtube_dl
+yt-dlp
