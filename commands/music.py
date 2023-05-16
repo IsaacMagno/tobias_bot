@@ -43,7 +43,7 @@ class Music(commands.Cog):
             source = await discord.FFmpegOpusAudio.from_probe(url2, **self.FFMPEG_OPTIONS)
             vc.play(source)
 
-    @commands.command(name="pause" help="Pausa a música atual")
+    @commands.command(name="pause", help="Pausa a música atual")
     async def pause(self, ctx):
         await ctx.voice_client.pause(ctx.voice)
         await ctx.send("Pausado")
