@@ -22,7 +22,7 @@ class Music(commands.Cog):
 
         voice_channel = ctx.author.voice.channel
 
-        if ctx.voice_channel is None:
+        if ctx.voice_client is None:
             await voice_channel.connect()
         else:
             await ctx.voice_client.move_to(voice_channel)
@@ -45,12 +45,12 @@ class Music(commands.Cog):
 
     @commands.command(name="pause", help="Pausa a música atual")
     async def pause(self, ctx):
-        await ctx.voice_client.pause(ctx.voice)
+        await ctx.voice_client.pause()
         await ctx.send("Pausado")
 
     @commands.command(name="resume", help="Continua a tocar a música pausada")
     async def resume(self, ctx):
-        await ctx.voice_client.pause(ctx.voice)
+        await ctx.voice_client.pause()
         await ctx.send("Resume")
 
 
