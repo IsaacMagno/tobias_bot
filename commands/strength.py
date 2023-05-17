@@ -6,9 +6,6 @@ class Strength(commands.Cog):
     """ Commands to Increase Strength"""
 
     login = None
-    champion_selected = None
-    response = None
-    data = None
 
     def __init__(self, bot):
         self.bot = bot

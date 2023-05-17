@@ -6,9 +6,6 @@ class Vitality(commands.Cog):
     """ Commands to Increase Vitality"""
 
     login = None
-    champion_selected = None
-    response = None
-    data = None
 
     def __init__(self, bot):
         self.bot = bot

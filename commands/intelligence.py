@@ -6,9 +6,6 @@ class Intelligence(commands.Cog):
     """ Commands to Increase Intelligence"""
 
     login = None
-    champion_selected = None
-    response = None
-    data = None
 
     def __init__(self, bot):
         self.bot = bot

@@ -6,9 +6,6 @@ class Agility(commands.Cog):
     """ Commands to Increase Agility"""
 
     login = None
-    champion_selected = None
-    response = None
-    data = None
 
     def __init__(self, bot):
         self.bot = bot

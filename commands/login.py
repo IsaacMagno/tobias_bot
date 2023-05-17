@@ -19,6 +19,8 @@ class Login(commands.Cog):
 
     @commands.command(name="login", help="Faz o login. Argumentos: usuário e senha")
     async def login(self, ctx, username, password):
+        if (self.champion_selected):
+            await ctx.send("Você já está logado!")
         data = {"username": username, "password": password}
 
         await ctx.message.delete()
