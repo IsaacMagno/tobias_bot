@@ -5,7 +5,7 @@ from decouple import config
 from discord.ext import commands
 
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix="!", intents=intents)
+bot = commands.Bot(command_prefix="$", intents=intents)
 
 
 async def load_cogs(bot):
